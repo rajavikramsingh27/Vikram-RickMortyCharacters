@@ -5,11 +5,13 @@
 
 import 'dart:convert';
 
+import 'package:equatable/equatable.dart';
+
 List<Character> characterFromJson(String str) => List<Character>.from(json.decode(str).map((x) => Character.fromJson(x)));
 
 String characterToJson(List<Character> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class Character {
+class Character extends Equatable{
   int id;
   String name;
   String status;
@@ -18,7 +20,7 @@ class Character {
   String gender;
   String image;
   String url;
-  DateTime created;
+  String created;
 
   Character({
     required this.id,
@@ -41,7 +43,7 @@ class Character {
     gender: json["gender"],
     image: json["image"],
     url: json["url"],
-    created: DateTime.parse(json["created"]),
+    created: json["created"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -53,6 +55,9 @@ class Character {
     "gender": gender,
     "image": image,
     "url": url,
-    "created": created.toIso8601String(),
+    "created": created,
   };
+
+  @override
+  List<Object> get props => [id, name, status, species, type, gender, image, url, created,];
 }

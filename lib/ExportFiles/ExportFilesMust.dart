@@ -11,3 +11,4 @@ export '../Styles/ColorStyle.dart';
 export '../Styles/ImageStyle.dart';
 export '../Styles/TextStyles.dart';
 
+export 'package:cached_network_image/cached_network_image.dart';

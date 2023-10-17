@@ -5,28 +5,32 @@
 part of 'rick_morty_characters_cubit.dart';
 
 // @immutable
-abstract class RickMortyCharactersState {}
+abstract class RickMortyCharactersState extends Equatable {
+  @override
+  List<Object> get props => [];
+}
 
 class RickMortyCharactersInitial extends RickMortyCharactersState {}
 
-class LoadingState extends RickMortyCharactersState {
+class RickMortyCharactersLoadingState extends RickMortyCharactersState {
   @override
   List<Object> get props => [];
 }
 
-class LoadedState extends RickMortyCharactersState {
-  LoadedState({
-    this.arrProductList = const [],
+class RickMortyCharactersLoadedState extends RickMortyCharactersState {
+  RickMortyCharactersLoadedState({
+    this.arrCharacterList = const [],
   });
 
-  final List<Character>? arrProductList;
+  final List<Character>? arrCharacterList;
 
   @override
-  List<Object> get props => [arrProductList!];
+  List<Object> get props => [arrCharacterList!];
 
 }
 
-class ErrorState extends RickMortyCharactersState {
+class RickMortyCharactersErrorState extends RickMortyCharactersState {
   @override
   List<Object> get props => [];
 }
+

@@ -5,14 +5,11 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'dart:math';
-
 import 'package:flutter_test/flutter_test.dart';
-import 'package:qurhealth_task/Models/Character.dart';
 import 'package:qurhealth_task/Repository/RickMortyCharactersRepo.dart';
 import 'package:qurhealth_task/Utils/API.dart';
 import 'package:qurhealth_task/Utils/APIEndPoints.dart';
-import 'package:http/http.dart' as http;
+
 
 void main() {
   group("description", () {
@@ -26,7 +23,10 @@ void main() {
     });
 
     test("ProductRepo.getCharacterPage", () async {
-      final arrCharacter = await RickMortyCharactersRepo.getCharacterPage(page: 2);
+      final rickMortyCharactersRepo = RickMortyCharactersRepo();
+
+      final url = kBaseURL + APIEndPoints.character_page.value;
+      final arrCharacter = await rickMortyCharactersRepo.getCharacterPage(url: url, page: 1, endPointsFilter: "");
 
       expect(arrCharacter!.isNotEmpty, true);
     });
