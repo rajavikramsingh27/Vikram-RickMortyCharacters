@@ -26,7 +26,6 @@ class RickMortyCharactersLoadedState extends RickMortyCharactersState {
 
   @override
   List<Object> get props => [arrCharacterList!];
-
 }
 
 class RickMortyCharactersErrorState extends RickMortyCharactersState {

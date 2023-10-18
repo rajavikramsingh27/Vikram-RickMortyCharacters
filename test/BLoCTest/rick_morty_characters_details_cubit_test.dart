@@ -18,7 +18,8 @@ void main() {
     setUp(() {
       EquatableConfig.stringify = true;
       repo = RickMortyCharactersDetailsRepo(id: 1);
-      cubit = RickMortyCharactersDetailsCubit(di_RickMortyCharactersDetailsRepo: repo);
+      cubit = RickMortyCharactersDetailsCubit();
+      cubit.di_RickMortyCharactersDetailsRepo = repo;
     });
 
     blocTest<RickMortyCharactersDetailsCubit, RickMortyCharactersDetailsState>(

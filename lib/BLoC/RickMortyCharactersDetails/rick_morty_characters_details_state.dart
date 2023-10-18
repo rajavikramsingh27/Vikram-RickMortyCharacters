@@ -1,7 +1,6 @@
 part of 'rick_morty_characters_details_cubit.dart';
 
 
-@immutable
 abstract class RickMortyCharactersDetailsState extends Equatable {}
 
 class RickMortyCharactersDetailsInitial extends RickMortyCharactersDetailsState {
@@ -22,7 +21,7 @@ class RickMortyCharactersDetailsLoadedState extends RickMortyCharactersDetailsSt
   final Character? characterDetails;
 
   @override
-  List<Object?> get props => [characterDetails];
+  List<Object> get props => [characterDetails!];
 
 }
 

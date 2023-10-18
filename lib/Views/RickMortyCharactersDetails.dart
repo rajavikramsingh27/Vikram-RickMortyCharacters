@@ -4,8 +4,6 @@ import 'package:qurhealth_task/Components/LoaderApp.dart';
 import 'package:qurhealth_task/ExportFiles/ExportFilesMust.dart';
 import 'package:qurhealth_task/Repository/RickMortyCharactersDetailsRepo.dart';
 
-import '../BLoC/rick_morty_characters_cubit.dart';
-
 class RickMortyCharactersDetails extends StatefulWidget {
   const RickMortyCharactersDetails({super.key, required this.id});
 
@@ -23,28 +21,33 @@ class _RickMortyCharactersDetailsState extends State<RickMortyCharactersDetails>
     // TODO: implement initState
     super.initState();
 
-    Future.delayed(const Duration(seconds: 1), () {
-      if (mounted) {
-        // controller = BlocProvider.of<RickMortyCharactersDetailsCubit>(context, listen: false);
-
+    // Future.delayed(const Duration(seconds: 1), () {
+    //   if (mounted) {
         final repo = RickMortyCharactersDetailsRepo(id: widget.id);
-        controller = RickMortyCharactersDetailsCubit(di_RickMortyCharactersDetailsRepo: repo);
 
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          // final repo = RickMortyCharactersDetailsRepo(id: widget.id);
-          // repo.getCharacterDetails();
-
+        // WidgetsBinding.instance.addPostFrameCallback((_) {
+          controller = BlocProvider.of<RickMortyCharactersDetailsCubit>(context, listen: false);
+          controller?.di_RickMortyCharactersDetailsRepo = repo;
           controller?.getCharacterPage();
-        });
-      }
-    });
+        // });
+      // }
+    // });
   }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+
+    controller = null;
+  }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarStyle(
-        text: 'Rick & Morty Characters Details',
+        text: 'Details',
         textStyle: TextStylesInter.textStyles_16,
       ),
       body: BlocBuilder<RickMortyCharactersDetailsCubit, RickMortyCharactersDetailsState>(
@@ -83,19 +86,19 @@ class _RickMortyCharactersDetailsState extends State<RickMortyCharactersDetails>
                     const SizedBox(height: 10),
                     Text(
                       key: const Key("name"),
-                      "state.arrProductList![index].name",
+                      state.characterDetails!.name,
                       style: TextStylesInter.textStyles_16,
                     ),
                     const SizedBox(height: 10),
                     Text(
                       key: const Key("status"),
-                      "state.arrProductList![index].status",
+                      state.characterDetails!.status,
                       style: TextStylesInter.textStyles_16,
                     ),
                     const SizedBox(height: 10),
                     Text(
                       key: const Key("species"),
-                      "state.arrProductList![index].species",
+                      state.characterDetails!.species,
                       style: TextStylesInter.textStyles_16,
                     ),
                     // const SizedBox(height: 10),
@@ -103,7 +106,7 @@ class _RickMortyCharactersDetailsState extends State<RickMortyCharactersDetails>
                     const SizedBox(height: 10),
                     Text(
                       key: const Key("gender"),
-                      "state.arrProductList![index].gender",
+                      state.characterDetails!.gender,
                       style: TextStylesInter.textStyles_16,
                     ),
                   ],

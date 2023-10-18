@@ -17,6 +17,3 @@ extension APIEndPoint on APIEndPoints {
   }
 }
 
-adfsaf() {
-  APIEndPoints.character_page.value;
-}

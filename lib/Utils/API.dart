@@ -1,28 +1,8 @@
 
-import 'package:flutter/material.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:http/http.dart' as http;
-import 'package:qurhealth_task/ExportFiles/ExportFilesMust.dart';
 
 String get kBaseURL {
   return 'https://rickandmortyapi.com/api/';
-}
-
-class CheckInternet {
-  static Future<bool> checkInternet() async {
-    try {
-      final connectivityResult = await (Connectivity().checkConnectivity());
-      if (connectivityResult == ConnectivityResult.mobile) {
-        return true;
-      } else if (connectivityResult == ConnectivityResult.wifi) {
-        return true;
-      } else {
-        return false;
-      }
-    } catch (error) {
-      return false;
-    }
-  }
 }
 
 class API {
@@ -34,6 +14,8 @@ class API {
     // if (!await CheckInternet.checkInternet()) {
     //   return null;
     // }
+
+    print(url);
 
     try {
       final response = await http.get(Uri.parse(url)).timeout(
